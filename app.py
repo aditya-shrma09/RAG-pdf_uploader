@@ -2,6 +2,7 @@ import streamlit as st
 import os
 
 from services.pdf_uploader import extract_text
+from services.chunker import chunker
 
 UPLOAD_DIR = "data/uploads"
 
@@ -23,5 +24,14 @@ if uploaded_file:
         f.write(uploaded_file.getbuffer())
 
     text = extract_text(file_path)
+    chunks = chunker(text)
+    for i, chunk in enumerate(chunks [:5]):
 
-    st.write(text)
+     st.subheader(f"Chunk {i + 1}")
+
+     st.text_area(
+         f"Chunk {i + 1}",
+        chunk,
+        height=200
+    )
+    

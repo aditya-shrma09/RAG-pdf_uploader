@@ -3,6 +3,7 @@ import os
 
 from services.pdf_uploader import extract_text
 from services.chunker import chunker
+from services.embedding import embedder
 
 UPLOAD_DIR = "data/uploads"
 
@@ -25,6 +26,10 @@ if uploaded_file:
 
     text = extract_text(file_path)
     chunks = chunker(text)
+    vectors = embedder(chunks)
+
+    st.write(vectors.shape)
+    st.write(vectors[0][:10])
     for i, chunk in enumerate(chunks [:5]):
 
      st.subheader(f"Chunk {i + 1}")
@@ -34,4 +39,5 @@ if uploaded_file:
         chunk,
         height=200
     )
+     
     

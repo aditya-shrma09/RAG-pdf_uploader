@@ -1,5 +1,5 @@
 def chunker(text):
-    chunk_size = 500
+    chunk_size = 100
 
     w = text.split()
     chunks =[]

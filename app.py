@@ -4,7 +4,6 @@ import os
 from services.pdf_uploader import extract_text
 from services.chunker import chunker
 from services.embedding import embedder
-
 UPLOAD_DIR = "data/uploads"
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -27,6 +26,7 @@ if uploaded_file:
     text = extract_text(file_path)
     chunks = chunker(text)
     vectors = embedder(chunks)
+   
 
     st.write(vectors.shape)
     st.write(vectors[0][:10])

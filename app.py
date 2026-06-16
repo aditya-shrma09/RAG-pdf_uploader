@@ -6,6 +6,7 @@ from services.chunker import chunker
 from services.embedding import embedder
 from services.retriver import create_vector_store
 from services.retriver import retrieve
+from services.prompt_builder import prompt_builder
 UPLOAD_DIR = "data/uploads"
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -24,11 +25,14 @@ if uploaded_file:
 
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
+
     text = extract_text(file_path)
     chunks = chunker(text)
     vectors = embedder(chunks)
     vector_store = create_vector_store(chunks, vectors)
+
     ques = st.text_input("Ask a question")
+
     if ques:
 
         em_ques = embedder(ques)
@@ -37,9 +41,15 @@ if uploaded_file:
             em_ques,
             vector_store
         )
-        top_k_chunks = retrieve(em_ques,vector_store)
-        st.write(top_k_chunks)
 
+        # st.write(top_k_chunks)
+
+        prompt = prompt_builder(
+            top_k_chunks,
+            ques
+        )
+
+        st.write(prompt)
    # st.write(vectors.shape)
     # st.write(vectors[0][:10])
     # st.write("Number of entries:", len(vector_store))

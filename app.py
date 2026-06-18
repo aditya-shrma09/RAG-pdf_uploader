@@ -7,6 +7,7 @@ from services.embedding import embedder
 from services.retriver import create_vector_store
 from services.retriver import retrieve
 from services.prompt_builder import prompt_builder
+from services.llm import generate_answer
 UPLOAD_DIR = "data/uploads"
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -48,8 +49,9 @@ if uploaded_file:
             top_k_chunks,
             ques
         )
-
-        st.write(prompt)
+        st.write("Generating answer...")
+        answer =  generate_answer(prompt)   
+        st.write(answer) 
    # st.write(vectors.shape)
     # st.write(vectors[0][:10])
     # st.write("Number of entries:", len(vector_store))

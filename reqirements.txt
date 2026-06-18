@@ -1,0 +1,9 @@
+streamlit
+sentence-transformers
+scikit-learn
+numpy
+pypdf
+google-genai
+python-dotenv
+torch
+transformers

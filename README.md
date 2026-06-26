@@ -96,6 +96,18 @@ streamlit run app.py
 * Chat interface
 * Persistent vector storage
 
+## Future Improvements
+
+This project currently uses an in-memory vector store with cosine similarity for semantic retrieval. This approach is simple, easy to understand, and works well for small to medium-sized document collections.
+
+Planned enhancements include:
+
+* **FAISS Integration:** Replace linear cosine similarity search with a FAISS vector index for faster nearest-neighbor retrieval and improved scalability.
+* **Overlapping Chunking:** Improve context preservation by generating overlapping text chunks.
+* **Persistent Vector Storage:** Save and reload embeddings to avoid recomputing them on every application startup.
+* **Multi-PDF Support:** Enable querying across multiple uploaded documents.
+
+
 ## Example
 
 **Question:**

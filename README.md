@@ -39,10 +39,9 @@ RAG-pdf_uploader/
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/aditya-shrma09/RAG-pdf_uploader.git
 cd RAG-pdf_uploader
 ```
-
 Install dependencies:
 
 ```bash

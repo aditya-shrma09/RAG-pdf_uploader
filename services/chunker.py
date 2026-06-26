@@ -1,9 +1,17 @@
 def chunker(text):
     chunk_size = 500
-
-    w = text.split()
+    overlap = 50
+    start =0
+    #w = text.split()
     chunks =[]
-    for i in range (0,len(w),chunk_size):
-        chunk = w[i:i+chunk_size]
-        chunks.append(" ".join(chunk))
+    while start < len(text):
+
+        end = start + chunk_size
+
+        chunks.append(text[start:end])
+
+        start += chunk_size - overlap
+    # for i in range (0,len(w),chunk_size):
+    #     chunk = w[i:i+chunk_size]
+    #     chunks.append(" ".join(chunk))
     return chunks
